@@ -6,6 +6,7 @@
 #include <type_traits>
 #include <vector>
 
+#include "insertionsort.h"
 #include "mergesort.h"
 #include "quicksort.h"
 
@@ -63,4 +64,12 @@ int main() {
   qsort(w);
   std::cout << "Legacy QuickSort: " << time(start) << "ms\n";
   assert(std::is_sorted(std::begin(w), std::end(w)) && "Legacy QuickSort");
+  /* You don't want to do this... With an input container size of n = 10^7,
+   * n^2 / (n log n) is about 430000...
+   */
+  //w = v;
+  //start = now();
+  //InsertionSort(w);
+  //std::cout << "InsertionSort: " << time(start) << "ms\n";
+  //assert(std::is_sorted(std::begin(w), std::end(w)) && "InsertionSort");
 }
