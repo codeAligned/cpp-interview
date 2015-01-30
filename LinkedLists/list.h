@@ -57,8 +57,7 @@ auto Append(ListPtr<T> head, T data) -> ListPtr<T> {
 }
 
 template <typename T>
-auto Remove(ListPtr<T> head, T data)
-    -> ListPtr<T> {
+auto Remove(ListPtr<T> head, T data) -> ListPtr<T> {
   if (head->data() == data) {
     return head->tail();
   }
@@ -69,8 +68,7 @@ auto Remove(ListPtr<T> head, T data)
 }
 
 template <typename T>
-auto Insert(ListPtr<T> head, T data, std::size_t position)
-    -> ListPtr<T> {
+auto Insert(ListPtr<T> head, T data, std::size_t position) -> ListPtr<T> {
   if (head == nullptr || position == 0) {
     return MakeList(data, head);
   }
