@@ -1,3 +1,4 @@
+#include <cassert>
 #include <iostream>
 #include <memory>
 
@@ -5,7 +6,7 @@
 
 int main() {
   using L = List<int>;
-  auto list = std::make_shared<L>(4, std::make_shared<L>(5));
+  auto list = MakeList(4, MakeList(5));
   Append(list, 6);
   Append(list, 7);
   list = Remove(list, 6);
@@ -21,4 +22,18 @@ int main() {
   }, std::make_tuple(0, 1));
   std::cout << "Sum: " << sum << '\n';
   std::cout << "Product: " << product << '\n';
+
+  // Test problem 2.1: RemoveDuplicates
+  std::cout << "Problem 2.1\n";
+  auto l = MakeList(1, MakeList(2, MakeList(1)));
+  l = RemoveDuplicates(l);
+  ForEach(l, [](int x) { std::cout << x << '\n'; });
+  
+  // Test problem 2.2: NthToLast
+  std::cout << "Problem 2.2\n";
+  auto l2 = MakeList(
+      5, MakeList(4, MakeList(3, MakeList(2, MakeList(1, MakeList(0))))));
+  for (int i = 0; i <= 5; ++i) {
+    assert(i == NthToLast(l2, i)->data());
+  }
 }
