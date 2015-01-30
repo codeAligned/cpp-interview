@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <type_traits>
 #include <utility>
 
 template <typename T>
@@ -82,6 +83,16 @@ auto Length(ListPtr<T> head) -> std::size_t {
     return 0;
   }
   return 1 + Length(head->tail());
+}
+
+// map :: [a] -> (a -> b) -> [b]
+template <typename T, typename FN,
+          typename RT = typename std::result_of<FN(T)>::type>
+auto Map(ListPtr<T> head, FN f) -> ListPtr<RT> {
+  if (head == nullptr) {
+    return EmptyList<RT>();
+  }
+  return MakeList<RT>(f(head->data()), Map(head->tail(), f));
 }
 
 // fold :: [a] -> (a -> b -> b) -> b -> b

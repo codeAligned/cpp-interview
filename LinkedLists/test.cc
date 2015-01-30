@@ -13,8 +13,12 @@ int main() {
   list = Remove(list, 4);
   list = Insert(list, 6, 1);
   list = Insert(list, 10, 10);
-  ForEach(list, [](int x) { std::cout << x << '\n'; });
+  ForEach(list, [](int x) { std::cout << x << ','; });
+  std::cout << '\n';
   std::cout << "Length: " << Length(list) << '\n';
+  auto lsquared = Map(list, [](int x) { return x * x; });
+  ForEach(lsquared, [](int x) { std::cout << x << ','; });
+  std::cout << '\n';
 
   int sum, product;
   std::tie(sum, product) = Fold(list, [](int x, std::tuple<int, int> acc) {
