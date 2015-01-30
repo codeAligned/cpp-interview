@@ -132,3 +132,13 @@ auto NthToLast(ListPtr<T> head, std::size_t n) -> ListPtr<T> {
   }
   return behind;
 }
+
+template <typename T>
+auto RemoveInPlace(ListPtr<T> elem) -> void {
+  if (elem->tail() == nullptr) {
+    elem.reset();
+  } else {
+    elem->set_data(elem->tail()->data());
+    elem->set_tail(elem->tail()->tail());
+  }
+}
