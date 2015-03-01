@@ -6,6 +6,7 @@
 #include <type_traits>
 #include <vector>
 
+#include "heapsort.h"
 #include "insertionsort.h"
 #include "mergesort.h"
 #include "quicksort.h"
@@ -49,6 +50,11 @@ int main() {
   std::sort(std::begin(w), std::end(w));
   std::cout << "std::sort: " << time(start) << "ms\n";
   assert(std::is_sorted(std::begin(w), std::end(w)) && "std::sort");
+  w = v;
+  start = now();
+  StlHeapSort(std::begin(w), std::end(w));
+  std::cout << "StlHeapSort: " << time(start) << "ms\n";
+  assert(std::is_sorted(std::begin(w), std::end(w)) && "StlHeapSort");
   w = v;
   start = now();
   MergeSort(std::begin(w), std::end(w));
