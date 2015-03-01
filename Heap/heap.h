@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include <cmath>
 #include <ostream>
 #include <tuple>
 #include <vector>
@@ -65,8 +66,13 @@ class Heap {
     return std::make_tuple(2 * pos + 1, 2 * pos + 2);
   }
 
+  auto lastNodeThatIsNotLeaf() const noexcept -> std::size_t {
+    const auto h = static_cast<unsigned>(std::log2(size()));
+    return (1 << h) - 1;
+  }
+
   auto isLeaf(std::size_t pos) const noexcept -> bool {
-    return pos > (size() - 2u) / 2u;
+    return pos > lastNodeThatIsNotLeaf();
   }
 
   auto isPartialHeap(std::size_t pos) const noexcept -> bool {
@@ -99,7 +105,7 @@ class Heap {
   }
 
   auto makeHeap() noexcept -> void {
-    for (auto i = (size() - 2u) / 2u + 1; i > 0; --i) {
+    for (auto i = lastNodeThatIsNotLeaf() + 1; i > 0; --i) {
       heapify(i - 1);
     }
   }
