@@ -27,7 +27,7 @@ int main() {
   std::cout << h.empty() << '\n';
   std::cout << h.size() << '\n';
 
-  auto v = std::vector<int>{-3, 1, 4, -2, 7, 9};
+  auto v = std::vector<int>{5, 2, -1, -3, 4, -2};
   auto h2 = Heap<int>{v};
   std::cout << h2 << '\n';
 }

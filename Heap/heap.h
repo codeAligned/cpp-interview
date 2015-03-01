@@ -99,8 +99,8 @@ class Heap {
   }
 
   auto makeHeap() noexcept -> void {
-    for (auto i = size() / 2; i > 0; --i) {
-      heapify(i);
+    for (auto i = (size() - 2u) / 2u + 1; i > 0; --i) {
+      heapify(i - 1);
     }
   }
   // members
