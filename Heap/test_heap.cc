@@ -1,4 +1,5 @@
 #include "heap.h"
+#include "stlheap.h"
 
 #include <iostream>
 
@@ -30,4 +31,16 @@ int main() {
   auto v = std::vector<int>{5, 2, -1, -3, 4, -2};
   auto h2 = Heap<int>{v};
   std::cout << h2 << '\n';
+
+  // STL Heap
+  auto sh = StlHeap<int>{};
+  sh.push(4);
+  sh.push(6);
+  sh.emplace(8);
+  sh.emplace(3);
+  auto sorted = sh.sorted();
+  for (const auto& elem : sorted) {
+    std::cout << elem << ' ';
+  }
+  std::cout << '\n';
 }
